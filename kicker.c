@@ -5,6 +5,11 @@
 
 #define SLAVE_ADDRESS 0x32
 
+void ATMEL_Save_Energy() {
+  PRR |= (1 << PRSPI)|                    // Disable Serial Peripheral Interface
+         (1 << PRADC);                    // Disable ADC
+}
+
 void TWI_Slave_Initialise(unsigned char TWI_ownAddress) {
   TWSA   = TWI_ownAddress << 1;            // Set own TWI slave address.
   TWSCRA = (0 << TWSHE)|                   // Disable TWI SDA Hold Time
@@ -22,6 +27,7 @@ ISR(TWI_SLAVE_vect)
 }
 
 int main(void) {
+  ATMEL_Save_Energy();
   TWI_Slave_Initialise(SLAVE_ADDRESS);
   return(0);
 }
