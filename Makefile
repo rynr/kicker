@@ -7,18 +7,8 @@ OBJS = $(TARGET).o
 CC = avr-gcc
 CFLAGS = -O -g -Wall -ffreestanding -mmcu=$(MCU)
 LDFLAGS = -Wl,-Map,$(TARGET).map
-LDLIBS = 
 
 .SUFFIXES: .s .bin .out .hex .srec
-
-#.c.s:
-#	$(CC) $(CFLAGS) -S $<
-#
-#.S.o:
-#	$(CC) $(ASFLAGS) -c $<
-#
-#.o.out:
-#	$(CC) $(CFLAGS) -o $@ $<
 
 .out.bin:
 	avr-objcopy -O binary $< $@
