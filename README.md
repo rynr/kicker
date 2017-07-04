@@ -25,3 +25,7 @@ There's no communication invoked by the slave. The master should query every
 second (or perhaps quarter second) the current counters. As there usually won't
 be more than 1 goal per second (at least not more than 50), also a overflow can
 easily be detected and accordingly have the number of goals be calculated.
+
+Notes
+-----
+ - Switch to detect goal: https://www.reichelt.de/index.html?ARTICLE=32740
