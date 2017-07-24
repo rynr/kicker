@@ -3,27 +3,22 @@ I²C kicker slave
 
 This is meant to be a I²C slave for a digital soccer table.
 
-     ┌──────────────────────┬───┬───┬──── VCC
-     │                      │R1 │R2 │          R1: 10k
-     │                     ┌┴┐ ┌┴┐  │          R2: 10k
-     │                     │ │ │ │  │          C1: 100n
-     │                     │ │ │ │  │          C2: 20n
-     │                     └┬┘ └┬┘  │          C3: 20n
-     │                      │   │   │
-     │   ┌───┬──────────────┤   │   │
-     │   │   │              │   │   │
-     │   │   │   ┌───┬──────│───┤   │
-     │   │   │   │   │      │2  │3  │8
-     │C1 │C2 │   │C3 │   ┌──┴───┴───┴──┐
-    ─┴─ ─┴─   / ─┴─   /  │             │
-    ─┬─ ─┬─  /  ─┬─  /   │ATTiny25     │
-     │   │   │   │   │   └──┬───┬───┬──┘
-     │   │   │   │   │      │4  │7  │5
-     │   │   │   │   │      │   │   └──── SDA
-     │   │   │   │   │      │   │
-     │   │   │   │   │      │   └──────── SCL
-     │   │   │   │   │      │
-     └───┴───┴───┴───┴──────┴──────────── GND
+     ┌────────┬─────────── VCC
+     │        │
+     │        │   ┌─────── SCL
+     │        │   │
+     │        │   │   ┌─── SDA
+     │        │8  │7  │5
+     │C1   ┌──┴───┴───┴──┐
+    ─┴─    │             │
+    ─┬─    │             │
+     │100n └──┬───┬───┬──┘
+     │        │2  │3  │4
+     │        │   │   │
+     │         /   /  │
+     │        /   /   │
+     │        │   │   │
+     └────────┴───┴───┴─── GND
 
 The controller stores the absolute number of goals that have been achieved.
 A connected I²C master can repeatingly query for the current status and
